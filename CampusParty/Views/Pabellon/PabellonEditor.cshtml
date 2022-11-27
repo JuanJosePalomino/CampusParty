@@ -1,0 +1,37 @@
+﻿@using CampusParty.ViewModels
+
+@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Editar Pabellon";
+    PabellonEditorViewModel pabellonEditorViewModel = Model;
+}
+
+@section Scripts {
+    <script src="~/js/admin/pabellones.js"></script>
+}
+<div class="container mt-2">
+
+    <h2 style="text-align:center;">Editar Pabellon</h2>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <form>
+                <input type="hidden" value="@pabellonEditorViewModel.Pabellon.PabellonId" id="pabellonId"/>
+                <input type="hidden" value="@pabellonEditorViewModel.Evento.EventoId" id="eventId"/>
+                <div class="mb-3">
+                    <label for="tematica" class="form-label">Tamatica</label>
+                    <input type="text" class="form-control" id="tematica" value="@pabellonEditorViewModel.Pabellon.Tematica">
+                </div>
+                <div class="mb-3">
+                    <label for="area" class="form-label">Area</label>
+                    <input type="text" class="form-control" id="area" value="@pabellonEditorViewModel.Pabellon.Area">
+                </div>
+                <div class="mb-3">
+                    <label for="ubicacion" class="form-label">Ubicación</label>
+                    <input type="text" class="form-control" id="ubicacion" value="@pabellonEditorViewModel.Pabellon.Ubicacion">
+                </div>
+                <button type="button" class="btn btn-primary" id="editPabellon">Editar</button>
+            </form>
+        </div>
+    </div>
+</div>
+

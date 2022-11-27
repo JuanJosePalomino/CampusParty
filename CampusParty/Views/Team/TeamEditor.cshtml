@@ -1,0 +1,38 @@
+﻿
+
+@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Editar Equipo";
+    Equipo equipo = Model;
+}
+@section Scripts {
+    <script src="~/js/admin/equipos.js"></script>
+}
+
+<div class="container">
+
+    <h2>Editar Equipo</h2>
+    <div class="row">
+        <div class="col-md-8">
+            <form>
+                <input type="hidden" value="@equipo.EquipoId" id="equipoId" />
+                <div class="mb-3">
+                    <label for="nombreEquipo" class="form-label">Nombre del equipo</label>
+                    <input type="text" class="form-control" id="nombreEquipo" value="@equipo.Nombre">
+                </div>
+                <div class="mb-3">
+                    <label for="tituloEquipo" class="form-label">Título del equipo</label>
+                    <input type="text" class="form-control" id="tituloEquipo" value="@equipo.Titulo">
+                </div>
+                <div class="mb-3">
+                    <label for="ciudadEquipo" class="form-label">Ciudad</label>
+                    <input type="text" class="form-control" id="ciudadEquipo" value="@equipo.Ciudad">
+                </div>
+                <button type="button" class="btn btn-primary" id="editEquipo">Editar</button>
+            </form>
+        </div>
+    </div>
+
+
+</div>
+

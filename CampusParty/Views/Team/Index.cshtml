@@ -1,0 +1,105 @@
+﻿
+@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Equipos";
+    IEnumerable<Equipo> equipos = Model;
+}
+
+@section Scripts {
+    <script src="~/js/admin/equipos.js"></script>
+}
+
+
+<div class="container">
+
+    <div class="titulos mb-4">
+        <h2>Administrar Equipos</h2>
+    </div>
+
+    <div class="top-table-container mt2">
+        <a class="btn btn-primary" href="@Url.Action("NewTeam", "Team")">Crear Equipo</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 p-2">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th colspan="2" scope="col">Título</th>
+                        <th>Ciudad</th>
+                        <th colspan="2" scope="col" class="d-flex justify-content-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Equipo equipo in equipos) {
+                        <tr>
+                            <th scope="row">@equipo.Nombre</th>
+                            <td colspan="2">@equipo.Titulo</td>
+                            <td>@equipo.Ciudad</td>
+                            <td colspan="2" class="d-flex justify-content-center">
+                                @*<button type="button" class="btn btn-success btn-sm m-1" data-bs-toggle="modal" data-bs-target="#showUsersModal">Ver Campuseros</button>*@
+                                <a class="btn btn-info btn-sm m-1" href="@Url.Action("TeamEditor","Team", new {idEquipo = equipo.EquipoId})">Editar</a>
+                                <button type="button" class="btn btn-danger btn-sm m-1 delete-equipo" data-bs-toggle="modal" data-bs-target="#dangerModal" data-itemid="@equipo.EquipoId">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--MODALES-->
+
+<div class="modal fade" id="showUsersModal" tabindex="-1" aria-labelledby="showUsersModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="showUsersModalLabel">Listado Usuarios</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="search-user" placeholder="Buscar usuario...">
+                    </div>
+                    <div class="users-container">
+                        <p class="modal-list-item">juan1234@gmail.com</p>
+                        <p class="modal-list-item">juan1234@gmail.com</p>
+                        <p class="modal-list-item">juan1234@gmail.com</p>
+                        <p class="modal-list-item">juan1234@gmail.com</p>
+                        <p class="modal-list-item">juan1234@gmail.com</p>
+                        <p class="modal-list-item">juan1234@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="dangerModal" tabindex="-1" aria-labelledby="dangerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dangerModalLabel">Eliminación elemento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿ Estás seguro que deseas eliminar este elemento ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteAction">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+

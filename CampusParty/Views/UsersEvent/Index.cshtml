@@ -1,0 +1,74 @@
+﻿@using CampusParty.ViewModels
+@using CampusParty.Services
+@inject ISitioService _sitioService;
+@inject IUsuarioService _usuarioService;
+@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Participantes";
+    UsuarioEventoSummaryViewModel usuarioEventoSummaryViewModel = Model;
+    IEnumerable<Usuario> usuarios = _usuarioService.GetUsuarios().ToList();
+    IEnumerable<Sitio> sitios = _sitioService.GetSitios().ToList();
+}
+
+@section Scripts {
+    <script src="~/js/admin/usuariosevento.js"></script>
+}
+
+<input type="hidden" value="@usuarioEventoSummaryViewModel.Pabellon.PabellonId" id="pabellonId"/>
+
+<div class="container">
+
+    <h2>Administrar participantes en el pabellón (@usuarioEventoSummaryViewModel.Pabellon.Area)</h2>
+
+    <div class="row">
+        <div class="col-md-12 p-2">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Correo</th>
+                        <th scope="col">Nombre Completo</th>
+                        <th scope="col">Código Sitio</th>
+                        <th scope="col" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(UsuarioEvento usuarioEvento in usuarioEventoSummaryViewModel.UsuariosEvento){
+                        Usuario usuario = usuarios.FirstOrDefault(x => x.UsuarioId == usuarioEvento.UsuarioId);
+                        Sitio sitio = sitios.FirstOrDefault(x => x.SitioId == usuarioEvento.SitioId);
+                        <tr>
+                            <th scope="row">@usuario.Correo</th>
+                            <td>@usuario.NombreCompleto</td>
+                            <td>@sitio.Codigo</td>
+                            <td colspan="2" class="d-flex flex-wrap justify-content-center" style="gap:5px;">
+                                <a class="btn btn-info btn-sm" href="@Url.Action("UserEventDetail", "UsersEvent", new {idUsuarioEvento = usuarioEvento.UsuarioEventoId})">Ver Detalles</a>
+                                <button type="button" class="btn btn-danger btn-sm delete-user-event" data-bs-toggle="modal" data-bs-target="#dangerModal" data-itemid="@usuarioEvento.UsuarioEventoId">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dangerModal" tabindex="-1" aria-labelledby="dangerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dangerModalLabel">Eliminación elemento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿ Estás seguro que deseas eliminar este elemento ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteAction">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,68 @@
+﻿@using CampusParty.ViewModels
+@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Sitios";
+    SitioSummaryViewModel sitiosSummaryViewModel = Model;
+}
+
+@section Scripts {
+    <script src="~/js/admin/sitios.js"></script>
+}
+
+<input type="hidden" value="@sitiosSummaryViewModel.Pabellon.PabellonId" id="pabellonId"/>
+
+<div class="container">
+
+    <h2>Administrar Sitios del pabellon (@sitiosSummaryViewModel.Pabellon.Area)</h2>
+    <div class="top-table-container mt2">
+        <a class="btn btn-primary" href="@Url.Action("NewSite", "Site", new {idPabellon = sitiosSummaryViewModel.Pabellon.PabellonId})">Crear Sitio</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 p-2">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(Sitio sitio in sitiosSummaryViewModel.Sitios){
+                        <tr>
+                            <th scope="row">@sitio.Codigo</th>
+                            <td>@String.Format("{0}", sitio.Estado ? "Disponible" : "Ocupado")</td>
+                            <td colspan="2" class="d-flex flex-wrap justify-content-center" style="gap:5px;">
+                                <a class="btn btn-info btn-sm" href="@Url.Action("SiteEditor", "Site", new {idSitio = sitio.SitioId})">Editar</a>
+                                <button type="button" class="btn btn-danger btn-sm delete-site" data-bs-toggle="modal" data-bs-target="#dangerModal" data-itemid="@sitio.SitioId">Eliminar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dangerModal" tabindex="-1" aria-labelledby="dangerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dangerModalLabel">Eliminación elemento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿ Estás seguro que deseas eliminar este elemento ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteAction">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

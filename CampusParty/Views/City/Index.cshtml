@@ -1,0 +1,67 @@
+﻿@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Eventos";
+    IEnumerable<Ciudad> ciudades = Model;
+}
+
+@section Scripts {
+    <script src="~/js/admin/ciudades.js"></script>
+}
+
+<div class="container">
+          
+    <h2>Administrar Ciudades</h2>
+    <div class="top-table-container mt2">
+    <a class="btn btn-primary" href="@Url.Action("NewCity", "City")">Crear Ciudad</a>
+    </div>
+
+    <div class="row">
+    <div class="col-md-12 p-2">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Número de Habitantes</th>
+                <th scope="col">Número de Universidades</th>
+                <th scope="col" class="text-center">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(Ciudad ciudad in ciudades){
+                    <tr>
+                        <th scope="col">@ciudad.Nombre</th>
+                        <td scope="col">@ciudad.NumeroHabitantes</td>
+                        <td scope="col">@ciudad.NumeroUniversidades</td>
+                        <td colspan="2" class="align-middle">
+                            <div class="d-flex justify-content-center h-100">
+                                <a class="btn btn-info btn-sm m-1" href="@Url.Action("CityEditor", "City", new {idCiudad = ciudad.CiudadId})">Editar</a>
+                                <button type="button" class="btn btn-danger btn-sm m-1 delete-city" data-bs-toggle="modal" data-bs-target="#dangerModal" data-itemid="@ciudad.CiudadId">Eliminar</button>
+                            </div>
+                        </td>
+                    
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dangerModal" tabindex="-1" aria-labelledby="dangerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dangerModalLabel">Eliminación elemento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿ Estás seguro que deseas eliminar este elemento ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteAction">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>

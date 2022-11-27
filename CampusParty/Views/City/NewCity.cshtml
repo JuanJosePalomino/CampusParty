@@ -1,0 +1,37 @@
+﻿@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Nuevo Evento";
+}
+
+@section Scripts {
+    <script src="~/js/admin/ciudades.js"></script>
+}
+
+@Html.AntiForgeryToken()
+
+<div class="container mt-2">
+
+    <h2 style="text-align:center;">Crear Ciudad</h2>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <form id="nuevoEventoForm">
+                <div class="mb-3">
+                    <label for="nombreCiudad" class="form-label">Nombre de la ciudad</label>
+                    <input type="text" class="form-control" id="nombreCiudad" name="nombreCiudad">
+                </div>
+                <div class="mb-3">
+                    <label for="numeroHabitantes" class="form-label">Número de Habitantes</label>
+                    <input type="number" class="form-control" id="numeroHabitantes" name="numeroHabitantes">
+                </div>
+                <div class="mb-3">
+                    <label for="numeroUniversidades" class="form-label">Número de Universidades</label>
+                    <input type="number" class="form-control" id="numeroUniversidades" name="numeroUniversidades">
+                </div>
+
+                <button type="button" class="btn btn-primary" id="crearCiudad">Crear</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

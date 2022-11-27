@@ -1,0 +1,33 @@
+﻿@using CampusParty.ViewModels
+
+@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Editar Sitio";
+    SitioEditorViewModel sitioEditorViewModel = Model;
+}
+
+@section Scripts {
+    <script src="~/js/admin/sitios.js"></script>
+}
+<div class="container mt-2">
+
+    <h2 style="text-align:center;">Editar Sitio</h2>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <form>
+                <input type="hidden" value="@sitioEditorViewModel.Pabellon.PabellonId" id="pabellonId"/>
+                <input type="hidden" value="@sitioEditorViewModel.Sitio.SitioId" id="sitioId"/>
+                <div class="mb-3">
+                    <label for="codigo" class="form-label">Código</label>
+                    <input type="text" class="form-control" id="codigo" value="@sitioEditorViewModel.Sitio.Codigo">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="estado" name="estado" checked>
+                    <label class="form-check-label" for="estado" @String.Format("{0}", sitioEditorViewModel.Sitio.Estado ? "checked" : String.Empty)>Disponible</label>
+                </div>
+                <button type="button" class="btn btn-primary" id="editSite">Editar</button>
+            </form>
+        </div>
+    </div>
+</div>
+

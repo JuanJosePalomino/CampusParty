@@ -1,0 +1,15 @@
+.users-container{
+    border:  1px solid #C4C8D1;
+    margin-top: 15px;
+    overflow-y: scroll;
+    max-height: 200px;
+}
+
+.selected-item{
+    background-color: #164EE4;
+    color: #fff;
+}
+
+.modal-list-item{
+    padding: 7px;;
+}

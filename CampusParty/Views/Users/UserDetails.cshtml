@@ -1,0 +1,48 @@
+﻿@using CampusParty.ViewModels
+
+@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Detalles Usuario";
+    UserDetailViewModel userDetailViewModel = Model;
+}
+@section Scripts {
+    <script src="~/js/admin/usuarios.js"></script>
+}
+
+<div class="container">
+    <h2>@userDetailViewModel.usuario.NombreCompleto</h2>
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-3 d-flex justify-content-between">
+                <div class="col-6">
+                    <label for="documento" class="form-label">Documento</label>
+                    <input type="text" class="form-control" id="documento" value="@userDetailViewModel.usuario.Documento" disabled>
+                </div>
+                <div class="col-6">
+                    <label for="fechaNacimiento" class="form-label">Fecha Nacimiento</label>
+                    <input type="date" class="form-control" id="fechaNacimiento" value="@userDetailViewModel.usuario.FechaNacimiento.ToString("yyyy-MM-dd")" disabled>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo</label>
+                <input type="text" class="form-control" id="correo" value="@userDetailViewModel.usuario.Correo" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="telefono" class="form-label">Telefono</label>
+                <input type="text" class="form-control" id="telefono" value="@userDetailViewModel.usuario.Telefono" disabled>
+            </div>
+            <div class="mb-3 d-flex justify-content-between">
+                <div class="col-5">
+                    <label for="ciudad" class="form-label">Ciudad</label>
+                    <input type="text" class="form-control" id="ciudad" value="@userDetailViewModel.ciudad.Nombre" disabled>
+                </div>
+                <div class="col-5">
+                    <label for="numeroUniversidades" class="form-label">Numero de universidades</label>
+                    <input type="text" class="form-control" id="numeroUniversidades" value="@userDetailViewModel.ciudad.NumeroUniversidades" disabled>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

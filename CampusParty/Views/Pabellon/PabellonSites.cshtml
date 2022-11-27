@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Sitios";
+}
+
+@section Scripts {
+    <script src="~/js/admin/pabellones.js"></script>
+}
+<div class="container">
+
+    <h2>Administrar Sitios del pabellon (Area)</h2>
+    <div class="top-table-container mt2">
+        <a class="btn btn-primary" href="#">Crear Sitio</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 p-2">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Codigo</th>
+                        <th scope="col">Numero</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">E1-P1-S1</th>
+                        <td>1</td>
+                        <td>Disponible</td>
+                        <td colspan="2" class="d-flex flex-wrap" style="gap:5px;">
+                            <a class="btn btn-info btn-sm" href="#">Editar</a>
+                            <a class="btn btn-danger btn-sm" href="#">Eliminar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">E1-P1-S2</th>
+                        <td>2</td>
+                        <td>Ocupado</td>
+                        <td colspan="2" class="d-flex flex-wrap justify-content-center" style="gap:5px;">
+                            <a class="btn btn-info btn-sm" href="#">Editar</a>
+                            <a class="btn btn-danger btn-sm" href="#">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+

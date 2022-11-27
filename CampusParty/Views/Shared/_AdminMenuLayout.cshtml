@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CampusParty</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/admin/admin-menu.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+
+</head>
+<body id="body-pd">
+    <header class="header" id="header">
+      <div class="header_toggle">
+        <i class="bx bx-menu" id="header-toggle"></i>
+      </div>
+      <div class="header_img">
+        <img src="~/src/usericon.png" alt="" />
+      </div>
+    </header>
+
+    <div class="l-navbar" id="nav-bar">
+      <nav class="nav">
+        <div>
+          <a href="#" class="nav_logo">
+            <i class="bx bx-layer nav_logo-icon"></i>
+            <span class="nav_logo-name">Campus Party</span>
+          </a>
+          <div class="nav_list">
+            <a href="@Url.Action("Index", "Event")" class="nav_link active">
+              <i class="bx bx-grid-alt nav_icon"></i>
+              <span class="nav_name">Eventos</span>
+            </a>
+            <a href="@Url.Action("Index", "Team")" class="nav_link">
+              <i class='bx bx-group nav_icon'></i>
+              <span class="nav_name">Equipos</span>
+            </a>
+            <a href="@Url.Action("Index", "Users")" class="nav_link">
+              <i class="bx bx-user nav_icon"></i>
+              <span class="nav_name">Usuarios</span>
+            </a>
+            <a href="@Url.Action("Index", "City")" class="nav_link">
+              <i class="bx bx-bar-chart-alt-2 nav_icon"></i>
+              <span class="nav_name">Ciudades</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle nav-link" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="~/src/usericon.png" alt="" width="32" height="32" class="rounded-circle me-2">
+              <strong>Configuración</strong>
+            </a>
+            <ul class="dropdown-menu text-small shadow">
+              <li><a class="dropdown-item" href="@Url.Action("Index", "Home") ">Inicio</a></li>
+              <li><a class="dropdown-item" href="@Url.Action("Index", "Event")">Mis eventos</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#" id="logout">Cerrar sesión</a></li>
+            </ul>
+          </div>
+
+      </nav>
+    </div>
+
+    <div class="height-100 bg-light">
+      <!--TODO EL CONTENIDO AQUÍ-->
+      
+          @RenderBody()
+      
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/admin/menu/admin-menu.js"></script>
+    <script src="~/js/auth.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+

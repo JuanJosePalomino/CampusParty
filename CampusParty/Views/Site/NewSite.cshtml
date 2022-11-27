@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Pabellones";
+    Pabellon pabellon = Model;
+}
+
+@section Scripts {
+    <script src="~/js/admin/sitios.js"></script>
+}
+<div class="container mt-2">
+
+    <h2 style="text-align:center;">Crear Pabellon</h2>
+    <div class="row justify-content-center">
+        <div class="col-8">
+            <form>
+                 <input type="hidden" value="@pabellon.PabellonId" id="pabellonId"/>
+                <div class="mb-3">
+                    <label for="codigo" class="form-label">Código</label>
+                    <input type="text" class="form-control" id="codigo">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="estado" name="estado" checked>
+                    <label class="form-check-label" for="estado">Disponible</label>
+                </div>
+
+               <button type="button" class="btn btn-primary" id="crearSitio">Crear</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+

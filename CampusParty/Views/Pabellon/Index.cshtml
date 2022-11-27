@@ -1,0 +1,82 @@
+﻿@using CampusParty.ViewModels
+
+@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Eventos";
+    PabellonSummaryViewModel pabellonesSummaryViewModel = Model;
+}
+
+@section Scripts {
+    <script src="~/js/admin/pabellones.js"></script>
+}
+
+<input type="hidden" value="@pabellonesSummaryViewModel.Evento.EventoId" id="eventId"/>
+
+<div class="container">
+
+    <div class="titulos mb-4">
+        <h2>Administrar pabellones del evento </h2>
+        <h5><strong>Nombre del evento: </strong> @pabellonesSummaryViewModel.Evento.Nombre</h5>
+    </div>
+
+    <div class="top-table-container mt2">
+        <a class="btn btn-primary" href="@Url.Action("NewPabellon", "Pabellon", new {idEvento = pabellonesSummaryViewModel.Evento.EventoId})">Crear Pabellón</a>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 p-2">
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Temática</th>
+                        <th scope="col">Área</th>
+                        <th scope="col">Ubicación</th>
+                        <th scope="col" class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Pabellon pabellon in pabellonesSummaryViewModel.Pabellones ) {
+                                            <tr>
+                        <th scope="row">@pabellon.Tematica</th>
+                        <td>@pabellon.Area</td>
+                        <td>@pabellon.Ubicacion</td>
+                        <td colspan="2" class="d-flex flex-wrap justify-content-center" style="gap:5px;">
+                            <a class="btn btn-info btn-sm" href="@Url.Action("PabellonEditor", "Pabellon", new {idPabellon = pabellon.PabellonId})">Editar</a>
+                            <button type="button" class="btn btn-danger btn-sm delete-pabellon" data-bs-toggle="modal" data-bs-target="#dangerModal" data-itemid="@pabellon.PabellonId">Eliminar</button>
+                            <div class="dropdown m-1">
+                                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-bs-toggle="dropdown">
+                                <i class='bx bxs-brightness'></i> Más Acciones
+                                </button>
+                                <ul class="dropdown-menu text-small shadow">
+                                    <li><a class="dropdown-item" href="@Url.Action("Index", "Site", new {idPabellon = pabellon.PabellonId })">Gestionar Sitios</a></li>
+                                    <li><a class="dropdown-item" href="@Url.Action("Index", "UsersEvent", new {idPabellon = pabellon.PabellonId})">Gestionar Participantes</a></li>
+                                </ul>
+                            </div>
+
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="dangerModal" tabindex="-1" aria-labelledby="dangerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dangerModalLabel">Eliminación elemento</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿ Estás seguro que deseas eliminar este elemento ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-danger" id="confirmDeleteAction">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>

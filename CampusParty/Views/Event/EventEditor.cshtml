@@ -1,0 +1,68 @@
+﻿
+@{
+    Layout = "_AdminMenuLayout";
+    ViewData ["Title"] = "Editar Evento";
+    Evento evento = Model;
+}
+
+@section Scripts {
+<script src="~/js/admin/eventos.js"></script>
+}
+
+<div class="container mt-2">
+          
+<h2 style="text-align:center;">Editar Evento</h2>
+<div class="row justify-content-center">
+    <div class="col-8">
+    <form>
+
+        <input type="hidden" value="@evento.EventoId" id="eventId"/>
+
+        <div class="mb-3">
+            <label for="nombreEvento" class="form-label">Nombre del evento</label>
+            <input type="text" class="form-control" id="nombreEvento" value="@evento.Nombre">
+        </div>
+        <div class="mb-3 d-flex justify-content-between">
+            <div class="col-5">
+            <label for="fechaInicio" class="form-label">Fecha de inicio del evento</label>
+            <input type="date" class="form-control" id="fechaInicio" value="@evento.FechaInicio.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="col-5">
+            <label for="fechaFin" class="form-label">Fecha de finalización del evento</label>
+            <input type="date" class="form-control" id="fechaFin" value="@evento.FechaFin.ToString("yyyy-MM-dd")">
+            </div>
+        </div>    
+        <div class="mb-3">
+            <label for="temasEvento" class="form-label">Temas</label>
+            <input type="text" class="form-control" id="temasEvento" aria-describedby="temasEventoHelp" value="@evento.Temas">
+            <div id="temasEventoHelp" class="form-text">Inserte los diferentes temas que se abordarán durante el evento.</div>
+        </div>
+        <div class="mb-3">
+            <label for="descEvento" class="form-label">Descripción</label>
+            <textarea class="form-control" id="descEvento">@evento.Descripcion</textarea>
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="estado" @String.Format("{0}", evento.Estado ? "checked" : String.Empty)>
+            <label class="form-check-label" for="estado">Disponible</label>
+        </div>
+        <div class="mb-3 d-flex justify-content-between">
+            <div class="col-3">
+            <label for="pais" class="form-label">Pais</label>
+            <input type="text" class="form-control" id="pais" value="Colombia">
+            </div>
+            <div class="col-3">
+            <label for="ciudad" class="form-label">Ciudad</label>
+            <input type="text" class="form-control" id="ciudad" value="Medellín">
+            </div>
+            <div class="col-3">
+            <label for="direccion" class="form-label">Direccion</label>
+            <input type="text" class="form-control" id="direccion" value="Dirección Prueba">
+            </div>
+        </div>  
+        <button type="button" class="btn btn-primary" id="editEvent">Editar</button>
+        </form>
+    </div>
+</div>
+</div>
+
+
